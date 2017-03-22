@@ -3,7 +3,15 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.render('console',{
+    title: "PiSEC Console View",
+    consoles : [
+        "Port0",
+        "Port1",
+        "Port2",
+        "Port3"
+    ]
+  });
 });
 
 module.exports = router;

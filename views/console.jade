@@ -1,3 +1,71 @@
 extends layout
 
 block content
+    nav.navbar.navbar-inverse.navbar-fixed-top
+        .container
+            .navbar-header
+                button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a.navbar-brand(href='#') PiSEC Console View
+            #navbar.collapse.navbar-collapse
+                ul.nav.navbar-nav
+                    li.tty-info-btn
+                        a(href='javascript:void(0);',data-toggle='modal', data-target='.mod-info-tty')
+                            span.glyphicon.glyphicon-search
+                                | &nbsp;
+                            | Console Info
+                    li.tty-select-btn
+                        a(href='javascript:void(0);',data-toggle='modal', data-target='.mod-change-tty')
+                            span.glyphicon.glyphicon-th-list
+                                | &nbsp;
+                            | Switch Console
+                    li.tty-settings-btn
+                        a(href='javascript:void(0);',data-toggle='modal', data-target='.mod-settings-tty')
+                            span.glyphicon.glyphicon-pencil
+                                | &nbsp;
+                            | Settings
+    .container
+        .fill.span5
+            .console-window
+                .tty-entry
+                    | I am a console log entry
+            .console-input
+                form.form-inline
+                    .form-group
+                        .input-group
+                            input#exampleInputAmount.form-control(type='text', placeholder='Command..')
+                            .input-group-addon \n\r
+                    button.btn.btn-primary(type='submit') Send
+
+
+
+
+    .modal.fade.mod-info-tty(tabindex='-1', role='info', aria-labelledby='mod-info-tty')
+        .modal-dialog.modal-lg(role='document')
+            .modal-content
+                .modal-header
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') ×
+                    h4#gridSystemModalLabel.modal-title Console Info
+                .modal-body
+                    h5  Nothing really
+                .modal-footer
+                    button.btn.btn-primary.tty-change-btn(type='button', data-dismiss='modal') Close
+    .modal.fade.mod-change-tty(tabindex='-1', role='dialog', aria-labelledby='mod-change-tty')
+        .modal-dialog.modal-lg(role='document')
+            .modal-content
+                .modal-header
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') ×
+                    h4#gridSystemModalLabel.modal-title Switch Console
+                .modal-body
+                    select.form-control
+                        each console, i in consoles
+                            option(value=i) Console #{console}
+                .modal-footer
+                    button.btn.btn-default(type='button', data-dismiss='modal') Cancel
+                    button.btn.btn-primary.tty-change-btn(type='button', data-dismiss='modal') Switch
+
